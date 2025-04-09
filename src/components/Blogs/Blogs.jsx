@@ -1,8 +1,13 @@
-import React, { use } from "react";
+import React, { useState, useEffect } from "react";
 
-const Blogs = ({ blogsPromise }) => {
-  const blogs = use(blogsPromise);
-  console.log(blogs);
+const Blogs = () => {
+  const [blogs, setBlogs] = useState([]);
+
+  useEffect(() => {
+    fetch("/blogs.json")
+      .then((res) => res.json())
+      .then((data) => setBlogs(data));
+  }, []);
   return <div></div>;
 };
 
